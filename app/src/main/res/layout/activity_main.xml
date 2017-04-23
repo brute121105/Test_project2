@@ -1,0 +1,39 @@
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_centerInParent="true"
+        android:textSize="18sp"
+        android:text="打开辅助服务"/>
+
+
+    <Button
+        android:id="@+id/create_database"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="create DataBase"/>
+    <Button
+        android:id="@+id/add_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="add data"/>
+    <Button
+        android:id="@+id/query_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="query data"/>
+    <Button
+        android:id="@+id/list_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="list data"/>
+
+</LinearLayout >
