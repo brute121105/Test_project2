@@ -35,5 +35,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="list data"/>
+    <Button
+        android:id="@+id/add_contacts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="添加联系人"/>
 
 </LinearLayout >

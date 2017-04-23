@@ -1,6 +1,8 @@
 package com.example.asus.test_project2.adapter;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -13,7 +15,9 @@ import android.widget.TextView;
 
 import com.example.asus.test_project2.R;
 import com.example.asus.test_project2.model.Phone;
+import com.example.asus.test_project2.phoneActivity.PhoneListActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,6 +34,7 @@ public class PhoneAdapter extends ArrayAdapter<Phone>{
         phones = objects;
     }
 
+
     @NonNull
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
@@ -43,9 +48,11 @@ public class PhoneAdapter extends ArrayAdapter<Phone>{
         btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Log.d("PhoneAdapter","dd");
+                Log.d("PhoneAdapter","369--");
                 Log.d("PhoneAdapter",phones.get(position).getPhone());
-                Log.d("PhoneAdapter",phones.get(position).getName()==null?"null":phones.get(position).getName());
+                phones.remove(position);
+                PhoneAdapter.this.notifyDataSetChanged();
+
             }
         });
         return view;

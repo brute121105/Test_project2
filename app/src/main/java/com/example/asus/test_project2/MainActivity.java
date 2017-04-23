@@ -20,6 +20,8 @@ import android.widget.Toast;
 
 import com.example.asus.test_project2.model.Phone;
 import com.example.asus.test_project2.phoneActivity.PhoneListActivity;
+import com.example.asus.test_project2.service.ContactService;
+import com.example.asus.test_project2.util.GetPermissionUtil;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
@@ -43,10 +45,14 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        GetPermissionUtil.getReadAndWriteContactPermision(MainActivity.this,MainActivity.this);
+        Log.d("MainActivity","1759 con---");
+
         Button createDataBase = (Button)findViewById(R.id.create_database);
         Button addData = (Button)findViewById(R.id.add_data);
         Button queryData = (Button)findViewById(R.id.query_data);
         Button ListData = (Button)findViewById(R.id.list_data);
+        Button addContact = (Button)findViewById(R.id.add_contacts);
         createDataBase.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -82,26 +88,22 @@ public class MainActivity extends Activity {
                 startActivity(intent);
             }
         });
+        final ContactService contactService = new ContactService();
+        addContact.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Log.d("MainActivity","8888add contacts");
+                //testAddContact("张三","11111111111");
+                contactService.testAddContact(MainActivity.this.getContentResolver(),"李四","32658");
 
+            }
+        });
 
-      /*  List<String> permissionList = new ArrayList<String>();
-        if (ContextCompat.checkSelfPermission(MainActivity.this,Manifest.permission.WRITE_CONTACTS)!=PackageManager.PERMISSION_GRANTED) {
-            permissionList.add(Manifest.permission.WRITE_CONTACTS);
-        }
-        if (ContextCompat.checkSelfPermission(MainActivity.this,Manifest.permission.READ_CONTACTS)!=PackageManager.PERMISSION_GRANTED) {
-            permissionList.add(Manifest.permission.READ_CONTACTS);
-        }
-        if(!permissionList.isEmpty()){
-            String[] permisions = permissionList.toArray(new String[permissionList.size()]);
-            ActivityCompat.requestPermissions(MainActivity.this,permisions,1);
-        }
-        testAddContact();*/
-
-      /*  startBtn = (Button) findViewById(R.id.start);
+        startBtn = (Button) findViewById(R.id.start);
         startBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("activity","clickkdsddssdo");
+                Log.d("activity","99980");
                 try {
                     //打开系统设置中辅助功能
                     Intent intent = new Intent(android.provider.Settings.ACTION_ACCESSIBILITY_SETTINGS);
@@ -111,78 +113,7 @@ public class MainActivity extends Activity {
                     e.printStackTrace();
                 }
             }
-        });*/
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
-    }
+        });
 
-    //添加联系人，使用事务
-    public void testAddContact() {
-
-        String name[] = {"周杰伦", "谢霆锋", "言承旭", "林俊杰", "潘玮柏"};
-        for (String ss : name) {
-            //首先插入空值，再得到rawContactsId ，用于下面插值
-            ContentValues values = new ContentValues();
-            //insert a null value
-            Uri rawContactUri = getContentResolver().insert(ContactsContract.RawContacts.CONTENT_URI, values);
-            long rawContactsId = ContentUris.parseId(rawContactUri);
-
-            //往刚才的空记录中插入姓名
-            values.clear();
-            //A reference to the _ID that this data belongs to
-            values.put(ContactsContract.CommonDataKinds.StructuredName.RAW_CONTACT_ID, rawContactsId);
-            //"CONTENT_ITEM_TYPE" MIME type used when storing this in data table
-            values.put(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE);
-            //The name that should be used to display the contact.
-            values.put(ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME, ss);
-            //insert the real values
-            getContentResolver().insert(ContactsContract.Data.CONTENT_URI, values);
-            //插入电话
-            values.clear();
-            values.put(ContactsContract.CommonDataKinds.Phone.RAW_CONTACT_ID, rawContactsId);
-            //String "Data.MIMETYPE":The MIME type of the item represented by this row
-            //String "CONTENT_ITEM_TYPE": MIME type used when storing this in data table.
-            values.put(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
-            values.put(ContactsContract.CommonDataKinds.Phone.NUMBER, "13800138000");
-            getContentResolver().insert(ContactsContract.Data.CONTENT_URI, values);
-        }
-
-    }
-
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    public Action getIndexApiAction() {
-        Thing object = new Thing.Builder()
-                .setName("Main Page") // TODO: Define a title for the content shown.
-                // TODO: Make sure this auto-generated URL is correct.
-                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
-                .build();
-        return new Action.Builder(Action.TYPE_VIEW)
-                .setObject(object)
-                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
-                .build();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        AppIndex.AppIndexApi.start(client, getIndexApiAction());
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        AppIndex.AppIndexApi.end(client, getIndexApiAction());
-        client.disconnect();
     }
 }

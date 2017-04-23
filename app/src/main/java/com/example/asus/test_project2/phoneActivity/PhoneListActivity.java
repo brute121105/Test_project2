@@ -1,5 +1,7 @@
 package com.example.asus.test_project2.phoneActivity;
 
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
@@ -16,14 +18,16 @@ import java.util.HashMap;
 import java.util.List;
 
 public class PhoneListActivity extends AppCompatActivity {
-
+    List<Phone> phones = null;
+    PhoneAdapter adapter = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone_list);
-        List<Phone> phones = DataSupport.findAll(Phone.class);
-        PhoneAdapter adapter = new PhoneAdapter(PhoneListActivity.this,R.layout.item,phones);
+        phones = DataSupport.findAll(Phone.class);
+        adapter = new PhoneAdapter(PhoneListActivity.this,R.layout.item,phones);
         ListView lv = (ListView)this.findViewById(R.id.listView);
         lv.setAdapter(adapter);
     }
+
 }
