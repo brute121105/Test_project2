@@ -11,20 +11,25 @@ import android.view.KeyEvent;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
+import com.example.asus.test_project2.getWinXinData.service.ParseWXDataService;
+
 import java.util.List;
 
 public class EnvelopeService extends AccessibilityService {
+    ParseWXDataService service = new ParseWXDataService();
     int count = 0;
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
-        AccessibilityNodeInfo nodeInfo2 = null;
         int eventType = event.getEventType();
         Log.d("EnvelopeService","----"+eventType+"----"+count);
         count=count+1;
         AccessibilityNodeInfo nodeInfo =  this.getRootInActiveWindow();
-        nodeInfo2 = nodeInfo.findAccessibilityNodeInfosByViewId("com.tencent.mm:id/cp7").get(0);
-        getText(nodeInfo,"aaa");
-        nodeInfo2.performAction(AccessibilityNodeInfo.ACTION_SCROLL_FORWARD);
+        AccessibilityNodeInfo nodeInfo2 = nodeInfo.findAccessibilityNodeInfosByViewId("com.tencent.mm:id/cp7").get(0);
+        service.getText(nodeInfo);
+        //getText(nodeInfo,"aaa");
+        if(nodeInfo2!=null){
+            nodeInfo2.performAction(AccessibilityNodeInfo.ACTION_SCROLL_FORWARD);
+        }
        /* Log.d("EnvelopeService","----"+eventType);
         switch (eventType){
             case AccessibilityEvent.TYPE_VIEW_CLICKED:
@@ -68,7 +73,7 @@ public class EnvelopeService extends AccessibilityService {
         return node;
 
     }
-    public void getText(AccessibilityNodeInfo nodeInfo,String flag){
+  public void getText(AccessibilityNodeInfo nodeInfo,String flag){
 
        if(nodeInfo!=null&&nodeInfo.getChildCount()>0){
             List<AccessibilityNodeInfo> items = nodeInfo.findAccessibilityNodeInfosByViewId("com.tencent.mm:id/lr");
@@ -80,7 +85,7 @@ public class EnvelopeService extends AccessibilityService {
             }
         }
 
-        int waitTimes = 4000+(int) (Math.random()*1200);
+        int waitTimes = 3000+(int) (Math.random()*1200);
         try {
             Log.d("EnvelopeService","waiting自动start:"+waitTimes);
             Thread.sleep(waitTimes);

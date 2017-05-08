@@ -1,6 +1,13 @@
 package com.example.asus.test_project2;
 
+import android.util.Log;
+
+import com.example.asus.test_project2.getWinXinData.service.ParseWXDataService;
+
 import org.junit.Test;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static org.junit.Assert.*;
 
@@ -12,6 +19,7 @@ import static org.junit.Assert.*;
 public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() throws Exception {
-        assertEquals(4, 2 + 2);
+        ParseWXDataService service = new ParseWXDataService();
+        service.queryData();
     }
 }

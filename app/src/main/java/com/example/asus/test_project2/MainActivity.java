@@ -18,9 +18,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.asus.test_project2.getWinXinData.GetWeinxinDataActivity;
+import com.example.asus.test_project2.getWinXinData.service.ParseWXDataService;
 import com.example.asus.test_project2.model.Phone;
 import com.example.asus.test_project2.phoneActivity.PhoneListActivity;
 import com.example.asus.test_project2.service.ContactService;
+import com.example.asus.test_project2.service.WriteFile;
 import com.example.asus.test_project2.util.GetPermissionUtil;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -30,6 +33,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import org.litepal.crud.DataSupport;
 import org.litepal.tablemanager.Connector;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,12 +51,16 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         GetPermissionUtil.getReadAndWriteContactPermision(MainActivity.this,MainActivity.this);
         Log.d("MainActivity","1759 con---");
+        File yygypath = this.getFilesDir();//this.getCacheDir();
+        String yygypathstr = yygypath.toString();
+        System.out.println("file----path--"+yygypathstr);
 
         Button createDataBase = (Button)findViewById(R.id.create_database);
         Button addData = (Button)findViewById(R.id.add_data);
         Button queryData = (Button)findViewById(R.id.query_data);
         Button ListData = (Button)findViewById(R.id.list_data);
         Button addContact = (Button)findViewById(R.id.add_contacts);
+        Button postData = (Button)findViewById(R.id.post_data);
         createDataBase.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -104,14 +112,33 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Log.d("activity","99980");
-                try {
+                Intent intent = new Intent(MainActivity.this, GetWeinxinDataActivity.class);
+                startActivity(intent);
+               /* try {
                     //打开系统设置中辅助功能
                     Intent intent = new Intent(android.provider.Settings.ACTION_ACCESSIBILITY_SETTINGS);
                     startActivity(intent);
                     Toast.makeText(MainActivity.this, "找到抢红包，然后开启服务即可", Toast.LENGTH_LONG).show();
                 } catch (Exception e) {
                     e.printStackTrace();
-                }
+                }*/
+            }
+        });
+        postData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("dd-->","sumbmit post");
+                ParseWXDataService service = new ParseWXDataService();
+                //service.sendDataByHTTP();
+                //service.queryData();
+               // service.send();
+                //service.httpPost();
+                WriteFile wf = new WriteFile();
+                //wf.initData();
+                wf.uploadMultiFile();
+                //String re = wf.ReadTxtFile("");
+                //System.out.println("read line --."+re);
+
             }
         });
 

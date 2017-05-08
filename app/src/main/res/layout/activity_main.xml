@@ -12,7 +12,7 @@
         android:padding="10dp"
         android:layout_centerInParent="true"
         android:textSize="18sp"
-        android:text="打开辅助服务"/>
+        android:text="朋友圈数据抓取"/>
 
 
     <Button
@@ -40,5 +40,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="添加联系人"/>
+    <Button
+        android:id="@+id/post_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="发送数据"/>
 
 </LinearLayout >
