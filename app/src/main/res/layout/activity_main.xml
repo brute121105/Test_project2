@@ -34,12 +34,17 @@
         android:id="@+id/list_data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="list data"/>
+        android:text="联系人列表"/>
     <Button
         android:id="@+id/add_contacts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="添加联系人"/>
+    <Button
+        android:id="@+id/get_contacts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="获取联系人"/>
     <Button
         android:id="@+id/post_data"
         android:layout_width="wrap_content"

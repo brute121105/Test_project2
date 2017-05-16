@@ -21,10 +21,13 @@ import android.widget.Toast;
 import com.example.asus.test_project2.getWinXinData.GetWeinxinDataActivity;
 import com.example.asus.test_project2.getWinXinData.service.ParseWXDataService;
 import com.example.asus.test_project2.model.Phone;
+import com.example.asus.test_project2.phoneActivity.PhoneGetActivity;
 import com.example.asus.test_project2.phoneActivity.PhoneListActivity;
 import com.example.asus.test_project2.service.ContactService;
 import com.example.asus.test_project2.service.WriteFile;
+import com.example.asus.test_project2.util.FileUtil;
 import com.example.asus.test_project2.util.GetPermissionUtil;
+import com.example.asus.test_project2.util.LogUtil;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
@@ -61,6 +64,14 @@ public class MainActivity extends Activity {
         Button ListData = (Button)findViewById(R.id.list_data);
         Button addContact = (Button)findViewById(R.id.add_contacts);
         Button postData = (Button)findViewById(R.id.post_data);
+        Button getContact = (Button)findViewById(R.id.get_contacts);
+        getContact.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, PhoneGetActivity.class);
+                startActivity(intent);
+            }
+        });
         createDataBase.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -127,18 +138,18 @@ public class MainActivity extends Activity {
         postData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("dd-->","sumbmit post");
+                LogUtil.d("发送数据","test Log save---.");
                 ParseWXDataService service = new ParseWXDataService();
                 //service.sendDataByHTTP();
-                //service.queryData();
+                service.queryData();
                // service.send();
                 //service.httpPost();
-                WriteFile wf = new WriteFile();
+                //WriteFile wf = new WriteFile();
                 //wf.initData();
-                wf.uploadMultiFile();
+                //wf.uploadMultiFile();
                 //String re = wf.ReadTxtFile("");
                 //System.out.println("read line --."+re);
-
+                //FileUtil.uploadMultiFile("http://10.0.102.172:8080/upload","/sdcard/A_my_Wxdata/","log6655.txt");
             }
         });
 

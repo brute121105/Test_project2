@@ -28,7 +28,7 @@ import static android.content.ContentValues.TAG;
 
 public class WriteFile {
     public void initData() {
-        String filePath = "/sdcard/";
+        String filePath = "/sdcard/A_my_Wxdata/";
         String fileName = "log6655.txt";
 
         writeTxtToFile("txt content", filePath, fileName);

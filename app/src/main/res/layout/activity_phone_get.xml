@@ -1,0 +1,51 @@
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.asus.test_project2.phoneActivity.PhoneGetActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ip地址"
+        android:textAlignment="viewStart"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/ip_address"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@color/common_action_bar_splitter"
+        android:hint="192.168.0.105"
+        android:paddingBottom="5dip"
+        android:paddingTop="20dip"
+        android:selectAllOnFocus="false"
+        android:singleLine="false"
+        android:textSize="14sp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="请求参数"
+        android:textAlignment="viewStart"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+    <EditText
+        android:id="@+id/pull_contact_param"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@color/common_action_bar_splitter"
+        android:hint="请求参数"
+        android:paddingBottom="5dip"
+        android:paddingTop="20dip"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/pull_contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="拉取联系人数据到手机"
+        android:textSize="18sp" />
+
+</LinearLayout >

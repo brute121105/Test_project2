@@ -11,6 +11,15 @@ public class Phone extends DataSupport{
     private String phone;
     private String phoneText;
     private String name;
+    private int is_add_contact;
+
+    public int getIs_add_contact() {
+        return is_add_contact;
+    }
+
+    public void setIs_add_contact(int is_add_contact) {
+        this.is_add_contact = is_add_contact;
+    }
 
     public int getId() {
         return id;
