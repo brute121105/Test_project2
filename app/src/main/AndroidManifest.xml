@@ -46,7 +46,8 @@
 
         <activity android:name=".phoneActivity.PhoneListActivity" />
         <activity android:name=".getWinXinData.GetWeinxinDataActivity" />
-        <activity android:name=".phoneActivity.PhoneGetActivity"></activity>
+        <activity android:name=".phoneActivity.PhoneGetActivity" />
+        <activity android:name=".phoneActivity.ImportContactActivity"></activity>
     </application>
 
 </manifest>

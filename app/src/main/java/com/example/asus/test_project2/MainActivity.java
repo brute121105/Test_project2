@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.example.asus.test_project2.getWinXinData.GetWeinxinDataActivity;
 import com.example.asus.test_project2.getWinXinData.service.ParseWXDataService;
 import com.example.asus.test_project2.model.Phone;
+import com.example.asus.test_project2.phoneActivity.ImportContactActivity;
 import com.example.asus.test_project2.phoneActivity.PhoneGetActivity;
 import com.example.asus.test_project2.phoneActivity.PhoneListActivity;
 import com.example.asus.test_project2.service.ContactService;
@@ -111,9 +112,11 @@ public class MainActivity extends Activity {
         addContact.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Log.d("MainActivity","8888add contacts");
+                Intent intent = new Intent(MainActivity.this, ImportContactActivity.class);
+                startActivity(intent);
+                /*Log.d("MainActivity","8888add contacts");
                 //testAddContact("张三","11111111111");
-                contactService.testAddContact(MainActivity.this.getContentResolver(),"李四","32658");
+                contactService.testAddContact(MainActivity.this.getContentResolver(),"李四","32658");*/
 
             }
         });
